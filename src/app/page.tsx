@@ -1,37 +1,25 @@
-'use client'
-import React from 'react'
+import { Payment, columns } from '@/components/columns'
+import DataTableDemo from '@/components/data-table'
 
-export default function Home() {
-	const [todos, setTodos] = React.useState([])
-	const todoInput = React.useRef(null)
+// async function getData(): Promise {
+// 	// Fetch data from your API here.
+// 	return [
+// 		{
+// 			id: '728ed52f',
+// 			amount: 100,
+// 			status: 'pending',
+// 			email: 'm@example.com',
+// 		},
+// 		// ...
+// 	]
+// }
 
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		setTodos([...todos, todoInput.current.value])
-		todoInput.current.value = ''
-	}
-
-	const handleDelete = (indexToDelete) => {
-		setTodos(todos.filter((_, index) => index !== indexToDelete))
-	}
+export default async function DemoPage() {
+	// const data = await getData()
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
-				<label>
-					New ToDo:
-					<input ref={todoInput} type='text' placeholder='type here...' />
-				</label>
-				<button type='submit'>Submit</button>
-			</form>
-			<div>
-				{todos.map((todo, index) => (
-					<div key={index}>
-						{todo}
-						<button onClick={() => handleDelete(index)}>Delete</button>
-					</div>
-				))}
-			</div>
+		<div className='container mx-auto py-10'>
+			<DataTableDemo />
 		</div>
 	)
 }
