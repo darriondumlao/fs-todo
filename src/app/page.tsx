@@ -1,4 +1,3 @@
-import { Payment, columns } from '@/components/columns'
 import DataTableDemo from '@/components/data-table'
 import ToDo from '@/components/Todo'
 
