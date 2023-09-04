@@ -1,56 +1,31 @@
-// 'use client'
-// import React, { useState, useRef } from 'react'
-// import Divider from './Divider'
+'use client'
 
-// const Todo = () => {
-// 	const [todos, setTodos] = useState([])
-// 	const todoInput = useRef(null)
+import { useState } from 'react'
+import { useStore } from '@/store/store'
 
-// 	const handleSubmit = (event) => {
-// 		event.preventDefault()
-// 		setTodos([...todos, { text: todoInput.current.value, completed: false }])
-// 		todoInput.current.value = ''
-// 	}
+const ToDo = () => {
+	const addTodo = useStore((state) => state.addTodo)
+	const [inputValue, setInputValue] = useState('')
 
-// 	const handleDelete = (indexToDelete) => {
-// 		setTodos(todos.filter((_, index) => index !== indexToDelete))
-// 	}
+	const handleSubmit = (event: React.FormEvent) => {
+		event.preventDefault()
+		addTodo({ id: Math.random().toString(), content: inputValue })
+		setInputValue('')
+	}
 
-// 	return (
-// 		<div>
-// 			<form onSubmit={handleSubmit} className='flex justify-center'>
-// 				<div className='p-2 flex'>
-// 					<div>New ToDo:</div>
-// 					<input
-// 						ref={todoInput}
-// 						type='text'
-// 						placeholder='type here...'
-// 						className='text-green-500'
-// 					/>
-// 				</div>
-// 				<button type='submit' className='rounded-xl bg-orange-400 p-1 text-sm'>
-// 					Add Todo
-// 				</button>
-// 			</form>
-// 			<div>
-// 				{todos.map((todo, index) => (
-// 					<div className='p-8'>
-// 						<div
-// 							key={index}
-// 							className='border-4 border-black flex justify-center space-x-4'>
-// 							<span>{todo.text}</span>
-// 							<button
-// 								className='border-2 border-green-500 rounded-none'
-// 								onClick={() => handleDelete(index)}>
-// 								Delete
-// 							</button>
-// 						</div>
-// 						<Divider />
-// 					</div>
-// 				))}
-// 			</div>
-// 		</div>
-// 	)
-// }
+	return (
+		<form onSubmit={handleSubmit}>
+			<input
+				className='outline outline-gray-400/75 rounded-sm pr-2'
+				type='text'
+				value={inputValue}
+				onChange={(e) => setInputValue(e.target.value)}
+			/>
+			<button type='submit' className='px-2 rounded-sm hover:bg-zinc-400'>
+				Submit
+			</button>
+		</form>
+	)
+}
 
-// export default Todo
+export default ToDo

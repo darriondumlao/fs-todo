@@ -1,5 +1,6 @@
 import { Payment, columns } from '@/components/columns'
 import DataTableDemo from '@/components/data-table'
+import ToDo from '@/components/Todo'
 
 // async function getData(): Promise {
 // 	// Fetch data from your API here.
@@ -19,6 +20,7 @@ export default async function DemoPage() {
 
 	return (
 		<div className='container mx-auto py-10'>
+			<ToDo />
 			<DataTableDemo />
 		</div>
 	)
